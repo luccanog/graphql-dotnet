@@ -1,3 +1,4 @@
+using GraphQL.Dotnet.Entities;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GraphQL.Dotnet.Controllers
@@ -6,8 +7,6 @@ namespace GraphQL.Dotnet.Controllers
     [Route("/")]
     public class DefaultController : ControllerBase
     {
-
-
         public DefaultController() { }
 
         [HttpGet]
