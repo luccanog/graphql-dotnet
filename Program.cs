@@ -11,12 +11,10 @@ namespace GraphQL.Dotnet
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            // Add services to the container.
-            builder.Services.AddControllers();
-            builder.Services.AddDbContext<AppDbContext>();
 
             builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
             builder.Services.AddScoped<IProductRepository, ProductRepository>();
+            builder.Services.AddDbContext<AppDbContext>();
 
             builder.Services.AddGraphQL(config =>
             {
@@ -27,6 +25,7 @@ namespace GraphQL.Dotnet
                 config.AddErrorInfoProvider(opt => opt.ExposeExceptionDetails = true );
             });
 
+            builder.Services.AddControllers();
 
             var app = builder.Build();
 

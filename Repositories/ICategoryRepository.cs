@@ -5,5 +5,7 @@ namespace GraphQL.Dotnet.Repositories
     public interface ICategoryRepository
     {
         IEnumerable<Category> GetAll();
+
+        Task Add(Category category);
     }
 }

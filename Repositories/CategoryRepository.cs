@@ -12,6 +12,12 @@ namespace GraphQL.Dotnet.Repositories
             _context = context;
         }
 
+        public async Task Add(Category category)
+        {
+            await _context.Categories.AddAsync(category);
+            _context.SaveChanges();
+        }
+
         public IEnumerable<Category> GetAll() => _context.Categories.ToList();
     }
 }
