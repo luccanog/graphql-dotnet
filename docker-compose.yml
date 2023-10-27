@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  # ASP.NET Service
+  graphql-dotnet:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:80"  # Map ASP.NET service's port 80 to host port 8080
+    depends_on:
+      - sqlserver
+    environment:
+      # Update these environment variables with your specific database configuration
+      ASPNETCORE_ENVIRONMENT: "Production"
+      ConnectionStrings__YourDatabase: "Server=sqlserver;Database=YourDatabase;User=YourUser;Password=YourPassword;"
+    networks:
+      - app-network
+
+  # SQL Server Container
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server
+    environment:
+      SA_PASSWORD: "Testpwd98765"  # Set your SQL Server SA password
+      ACCEPT_EULA: "Y"
+    ports:
+      - "1433:1433"  # Map SQL Server's port 1433 to host port 1433
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
