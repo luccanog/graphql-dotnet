@@ -9,7 +9,7 @@ namespace GraphQL.Dotnet.GraphQL.Queries
     {
         public AppQuery()
         {
-            Field<CategoryType>(nameof(Category))
+            Field<ListGraphType<CategoryType>>(nameof(Category).ToLower())
                 .Resolve(context =>
                 {
                     using var scope = context.RequestServices.CreateScope();

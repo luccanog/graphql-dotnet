@@ -7,6 +7,9 @@ namespace GraphQL.Dotnet.GraphQL.Types
     {
         public CategoryType()
         {
+            Name = nameof(Category).ToLower();
+            Description = "The product's category";
+            
             Field(c => c.Id, type: typeof(IdGraphType))
                 .Description("UUID identificator from Category object");
 
