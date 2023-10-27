@@ -1,6 +1,7 @@
 using GraphQL.Dotnet.Entities.Context;
 using GraphQL.Dotnet.GraphQL;
 using GraphQL.Dotnet.Repositories;
+using Microsoft.EntityFrameworkCore;
 
 namespace GraphQL.Dotnet
 {
@@ -11,7 +12,6 @@ namespace GraphQL.Dotnet
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
-
             builder.Services.AddControllers();
             builder.Services.AddDbContext<AppDbContext>();
 
@@ -30,8 +30,14 @@ namespace GraphQL.Dotnet
 
             var app = builder.Build();
 
-            // Configure the HTTP request pipeline.
+            // Apply database migrations during application startup
+            using (var serviceScope = app.Services.CreateScope())
+            {
+                var context = serviceScope.ServiceProvider.GetRequiredService<AppDbContext>();
+                context.Database.Migrate();
+            }
 
+            // Configure the HTTP request pipeline.
             app.UseHttpsRedirection();
 
             app.UseAuthorization();
