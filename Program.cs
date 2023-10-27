@@ -1,5 +1,10 @@
 using GraphQL.Dotnet.Entities.Context;
+using GraphQL.Dotnet.GraphQL;
+using GraphQL.Dotnet.GraphQL.Queries;
+using GraphQL.Dotnet.GraphQL.Types;
 using GraphQL.Dotnet.Repositories;
+using GraphQL.MicrosoftDI;
+using GraphQL.Types;
 
 namespace GraphQL.Dotnet
 {
@@ -13,9 +18,21 @@ namespace GraphQL.Dotnet
 
             builder.Services.AddControllers();
             builder.Services.AddDbContext<AppDbContext>();
-            
+
             builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
             builder.Services.AddScoped<IProductRepository, ProductRepository>();
+
+            builder.Services.AddSingleton<AppQuery>();
+            builder.Services.AddSingleton<CategoryType>();
+
+            builder.Services.AddSingleton<ISchema, AppSchema>(services => new AppSchema(new SelfActivatingServiceProvider(services)));
+
+            builder.Services.AddGraphQL(config =>
+            {
+                config.AddSystemTextJson();
+                config.AddSchema<AppSchema>();
+            });
+
 
             var app = builder.Build();
 
@@ -25,6 +42,8 @@ namespace GraphQL.Dotnet
 
             app.UseAuthorization();
 
+            app.UseGraphQL<AppSchema>();
+            app.UseGraphQLPlayground();
 
             app.MapControllers();
 
