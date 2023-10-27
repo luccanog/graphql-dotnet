@@ -1,13 +1,6 @@
 using GraphQL.Dotnet.Entities.Context;
 using GraphQL.Dotnet.GraphQL;
-using GraphQL.Dotnet.GraphQL.Queries;
-using GraphQL.Dotnet.GraphQL.Types;
 using GraphQL.Dotnet.Repositories;
-using GraphQL.Execution;
-using GraphQL.MicrosoftDI;
-using GraphQL.Types;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Logging;
 
 namespace GraphQL.Dotnet
 {
