@@ -14,11 +14,11 @@ namespace GraphQL.Dotnet.Entities
 
         [Required]
         [MaxLength(80)]
-        public string Nome { get; set; }
+        public string Name { get; set; }
 
         [Required]
         [MaxLength(300)]
-        public string ImagemUrl { get; set; }
+        public string ImageUrl { get; set; }
 
         public ICollection<Product> Products { get; set; }
     }
