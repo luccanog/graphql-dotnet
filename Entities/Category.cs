@@ -10,7 +10,7 @@ namespace GraphQL.Dotnet.Entities
             Products = new Collection<Product>();
         }
 
-        public int CategoriaId { get; set; }
+        public Guid Id { get; set; }
 
         [Required]
         [MaxLength(80)]
