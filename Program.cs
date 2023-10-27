@@ -1,4 +1,5 @@
 using GraphQL.Dotnet.Entities.Context;
+using GraphQL.Dotnet.Repositories;
 
 namespace GraphQL.Dotnet
 {
@@ -12,6 +13,9 @@ namespace GraphQL.Dotnet
 
             builder.Services.AddControllers();
             builder.Services.AddDbContext<AppDbContext>();
+            
+            builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+            builder.Services.AddScoped<IProductRepository, ProductRepository>();
 
             var app = builder.Build();
 
