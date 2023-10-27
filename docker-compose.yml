@@ -13,7 +13,6 @@ services:
     environment:
       # Update these environment variables with your specific database configuration
       ASPNETCORE_ENVIRONMENT: "Production"
-      ConnectionStrings__YourDatabase: "Server=sqlserver;Database=YourDatabase;User=YourUser;Password=YourPassword;"
     networks:
       - app-network
 
