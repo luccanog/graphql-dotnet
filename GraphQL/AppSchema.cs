@@ -1,4 +1,5 @@
-﻿using GraphQL.Dotnet.GraphQL.Queries;
+﻿using GraphQL.Dotnet.GraphQL.Mutations;
+using GraphQL.Dotnet.GraphQL.Queries;
 using GraphQL.Types;
 
 namespace GraphQL.Dotnet.GraphQL
@@ -9,6 +10,7 @@ namespace GraphQL.Dotnet.GraphQL
         : base(provider)
         {
             Query = provider.GetRequiredService<AppQuery>();
+            Mutation = provider.GetRequiredService<AppMutation>();
         }
     }
 }

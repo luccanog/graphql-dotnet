@@ -20,8 +20,6 @@ namespace GraphQL.Dotnet
             {
                 config.AddSystemTextJson();
                 config.AddSelfActivatingSchema<AppSchema>();
-                config.UseTelemetry();
-                config.UseApolloTracing();
                 config.AddErrorInfoProvider(opt => opt.ExposeExceptionDetails = true );
             });
 
