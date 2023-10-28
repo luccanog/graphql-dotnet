@@ -1,4 +1,3 @@
-using GraphQL.Dotnet.Entities;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GraphQL.Dotnet.Controllers
